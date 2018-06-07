@@ -32,8 +32,15 @@ class BugView(context: Context) : FrameLayout(context, null), Anvil.Renderable {
             setOnMenuItemClickListener a@{
               AlertDialog.Builder(context)
                 .setPositiveButton("ok", { _, _ ->
-                  subscriptions.add(Observable.just(1)
-                    .subscribe(
+
+                  // When line A is uncommented here, the app will crash on affected versions
+                  // When line B is uncommented instead, the app will not crash
+
+                  /* A */ subscriptions.add(Observable.just(1)
+
+//                  /* B */ (Observable.just(1)
+
+                  .subscribe(
                       { },
                       Throwable::printStackTrace
                     ))
