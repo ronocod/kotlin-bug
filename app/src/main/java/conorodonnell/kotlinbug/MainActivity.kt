@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.FrameLayout
 import rx.Observable
-import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 import trikita.anvil.Anvil
 import trikita.anvil.DSL.init
@@ -25,15 +24,14 @@ class MainActivity : AppCompatActivity() {
 }
 
 class BugView(context: Context) : FrameLayout(context, null), Anvil.Renderable {
-  var subscription: Subscription? = null
-
   val subscriptions = CompositeSubscription()
 
   init {
-    subscription = Observable.just(1)
+    subscriptions.add(Observable.just(1)
       .subscribe({
         Anvil.render(this)
       }, Throwable::printStackTrace)
+    )
   }
 
   override fun view() {
