@@ -1,5 +1,5 @@
 # kotlin-bug
-Demo app to reproduce a Kotlin bug
+Demo app to reproduce Kotlin bug [KT-24825](https://youtrack.jetbrains.net/issue/KT-24825)
 
 ### Bug
 
